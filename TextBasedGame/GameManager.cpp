@@ -1,3 +1,5 @@
+//Lewis Andrew Broad. Buckinghamshire New University
+
 #include "GameManager.h"
 GameManager::GameManager() {
 	srand(time(NULL));

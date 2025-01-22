@@ -1,4 +1,4 @@
-// MiniGame.cpp : Defines the entry point for the application.
+//Lewis Andrew Broad. Buckinghamshire New University
 #include <iostream>
 #include <iomanip>
 #include <string>
