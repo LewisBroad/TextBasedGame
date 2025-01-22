@@ -15,5 +15,4 @@ void main() {
 
 	GameManager gm;
 	gm.startGame();
-
 }

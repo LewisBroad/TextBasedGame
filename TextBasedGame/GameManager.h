@@ -19,8 +19,7 @@ class GameManager
 {
 	string input;
 	Player* player;
-	NetClient client;
-	void server();
+
 
 
 public:

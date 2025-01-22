@@ -47,6 +47,9 @@ void GameManager::gameLoop() {
 			system("CLS");
 			magicGnome(); //runs the gnome encounter
 		}
+		else {
+			cout << "You continue to walk...\n";
+		}
 		cout << "\n\nDo you want to:\n";
 		cout << "1. Continue walking\n";
 		cout << "2. Check stats\n";
@@ -74,41 +77,6 @@ void GameManager::gameLoop() {
 		playing = false;
 	}
 }
-//void GameManager::gameLoop(Player &player) {
-//	while (player.isAlive()) {
-//		auto enemy = EnemyManager::createEnemy(player.getLevel());
-//		cout << "\nA level "<<enemy->getLevel()<< " " << enemy->getName() << " blocks your path\n";
-//		enemy->Display();
-//		while (enemy->isAlive() && player.isAlive()) {
-//			//players turn
-//			int choice; 
-//			cout << "\nChoose your attack:\n 1. Physical Damage\n 2.Magic Damage\n";
-//			cin >> choice;
-//			if (choice == 1) {
-//				enemy->takePhysicalDamage(player.physicalAttack());
-//			}
-//			else if (choice == 2) {
-//				enemy->takeMagicDamage(player.magicAttack());
-//			}
-//			else {
-//				cout << "Undecided, skipping turn...\n";
-//			}
-//			if (enemy->isAlive()) {
-//				if (rand() % 2 == 0) {
-//					player.takePhysicalDamage(enemy->physicalAttack());
-//				}
-//				else {
-//					player.takeMagicDamage(enemy->magicAttack());
-//				}
-//			}
-//		}
-//		if (player.isAlive()) {
-//			cout << "You Defeated the " << enemy->getName() << endl;
-//			player.gainXP(20 * enemy->getLevel());
-//		}
-//		else { cout << "you have died\n"; }
-//	}
-//}
 
 void GameManager::randomEncounters() {
 	cout << "\nA Wild Enemy Appers";
@@ -140,6 +108,7 @@ void GameManager::randomEncounters() {
 		cerr << "invalid option. Combat starts\n";
 		Battle(player, enemy);
 	}
+
 	delete enemy; // free up memory
 }
 
@@ -273,3 +242,41 @@ void GameManager::Shop() {
 void GameManager::Journey() {
 
 }
+
+
+
+/*void GameManager::gameLoop(Player& player) {
+	while (player.isAlive()) {
+		auto enemy = EnemyManager::createEnemy(player.getLevel());
+		cout << "\nA level "<<enemy->getLevel()<< " " << enemy->getName() << " blocks your path\n";
+		enemy->Display();
+		while (enemy->isAlive() && player.isAlive()) {
+			//players turn
+			int choice; 
+			cout << "\nChoose your attack:\n 1. Physical Damage\n 2.Magic Damage\n";
+			cin >> choice;
+			if (choice == 1) {
+				enemy->takePhysicalDamage(player.physicalAttack());
+			}
+			else if (choice == 2) {
+				enemy->takeMagicDamage(player.magicAttack());
+			}
+			else {
+				cout << "Undecided, skipping turn...\n";
+			}
+			if (enemy->isAlive()) {
+				if (rand() % 2 == 0) {
+					player.takePhysicalDamage(enemy->physicalAttack());
+				}
+				else {
+					player.takeMagicDamage(enemy->magicAttack());
+				}
+			}
+		}
+		if (player.isAlive()) {
+			cout << "You Defeated the " << enemy->getName() << endl;
+			player.gainXP(20 * enemy->getLevel());
+		}
+		else { cout << "you have died\n"; }
+	}
+} */
