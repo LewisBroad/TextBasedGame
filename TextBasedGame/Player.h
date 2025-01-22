@@ -13,6 +13,8 @@ class Player : public Character
 {
 private:
 	Specialty specialty;
+
+
 public:
 	Player(string name,Specialty specialty,int maxHealth, int health, int physDamage, int magDamage, int armour, int magResist) :Character(name,maxHealth, health, physDamage, magDamage, armour, magResist) {
 	}

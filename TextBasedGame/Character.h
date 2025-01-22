@@ -28,6 +28,8 @@ public:
 	{
 		levelXp = 100 * level/2;
 	}
+	friend class GameManager; // this allows the gamemanager to access the private members of the character class
+
 	virtual void Display()const {
 		cout << "Name: " << name << endl
 			<< "HP: " << health << "/"<< maxHealth << endl
@@ -52,7 +54,7 @@ public:
 		if (health < 0) health = 0;
 		cout << name << " takes " << damageReduction << " magic damage.\n";
 	}
-
+private:
 	//polymorphic functions. Each instance has their own return of this function.
 	virtual int physicalAttack()const {
 		return physDamage;
@@ -69,41 +71,23 @@ public:
 	virtual int getMagicResist()const {
 		return magResist;
 	}
-	/*void takeDamage(int damageTaken) {
-		health -= damageTaken;
-		if (health < 0) health = 0;
-		cout << name << " has taken " << damageTaken << " damage\n" << "Remaining HP: " << health << endl;
-	}*/
-
-	/*virtual int attack()const {
-		if (physDamage > magDamage) {
-			cout << name << " attacks for " << physDamage << endl;
-			int  damage = 
-			return damage;
-		}
-	}*/
-
-	bool isAlive() const {
-		return health > 0;
-	}
-
-	void gainXP(int xpGain) {
+	void gainXP(int xpGain) { //takes in an int value and adds it to the exp value
 		exp += xpGain;
 		cout << xpGain << " XP Gained\n";
 		canLevelUp();
-		
-	}
 
+	}
+public:
 	void canLevelUp() {
-		while (exp >= levelXp) {
+		while (exp >= levelXp) { //checks to see the characters current xp is greater than the xp needed to level up
 			exp -= levelXp;
 			level++;
 			levelXp = 100 * level / 2;
 			levelUp();
 		}
 	}
-	virtual void levelUp() {
-	
+	virtual void levelUp() { //function to level up the character
+
 		cout << name << " is now level " << level << endl;
 		maxHealth += 10;
 		health = maxHealth;
@@ -116,54 +100,14 @@ public:
 			physDamage += 5;
 			magDamage += 2;
 		}
-		
+
 		cout << "Physical damage grown to " << physDamage << endl;
 		cout << "Magic damage grown to " << magDamage << endl;
 
 	}
-
+	bool isAlive() const {
+		return health > 0;
+	}
 	int getLevel() const { return level; }
 	string getName() const { return name; }
-protected:
-	//double damage;
-	//double HP;
-
-
 };
-
-//void Character::newGame() {
-//	level = 1;
-//	money = 0;
-//	HP = 100;
-//	CharacterCreation();
-//}
-
-
-//string Character::CharacterCreation() {
-//	char ch;
-//	cout << "Please name your character : \n" << endl;
-//	cin >> name;
-//	cout << "\n You are called " << name << ". correct?\n" << endl << "Y for yes, N for no." << endl;
-//	getc(stdin);
-//	cin.get(ch);
-//	while (ch == 'n' || ch == 'N') {
-//		cin.clear();
-//		cout << "Please name your character : \n" << endl;
-//		cin >> name;
-//		cout << "\n You are called " << name << ". correct?\n" << endl << "Y for yes, N for no." << endl;
-//		getc(stdin);
-//		cin.get(ch);
-//	}
-//	return name;
-//}
-
-//void Character::gainXP(int xp) {
-//	this->XP += xp;
-//	if (this->XP >= 100) {
-//		this->XP -= 100;
-//		this->level++;
-//	}
-//}
-//void Character::stats(int strength, int intelect, int swiftness) {
-//	
-//}

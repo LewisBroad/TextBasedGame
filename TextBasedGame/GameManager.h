@@ -5,8 +5,6 @@
 #include <cstdlib>
 #include <ctime>
 #include "Windows.h"
-
-#include "NetClient.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "EnemyManager.h"
@@ -26,11 +24,11 @@ public:
 	GameManager();
 	~GameManager();
 	void startGame();
-	void runGame();
 	void randomEncounters();
 	void gameLoop();
 	void magicGnome();
 	//void gameLoop(Player& player);
+	//void runGame();
 protected:
 	void Battle(Player *player, Enemy* enemy);
 	void Shop();

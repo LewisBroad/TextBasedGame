@@ -7,12 +7,26 @@
 
 using namespace std;
 
-#include "Menu.h"
+#include "GameManager.h"
 #include "Character.h"
 #include "Player.h"
+#include "NetClient.h"
 
-void main() {
+
+int main() {
+	const int port = 55555;
+	NetClient client(port);
+	if (!client.startUp()) return 1;
+	if (!client.createSocket()) return 1;
+	if (!client.connectToServer()) return 1;
+
+
 
 	GameManager gm;
 	gm.startGame();
+
+
+
+	client.cleanup();
+	return 0;
 }
