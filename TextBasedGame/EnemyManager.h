@@ -5,6 +5,6 @@
 class EnemyManager
 {
 public:
-	static Enemy* createEnemy(int playerLevel);//creates enemy
+	static Enemy* createEnemy(int playerLevel);//creates a static enemy
 };
 

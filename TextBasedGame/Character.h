@@ -40,6 +40,16 @@ public:
 			<< "Level: " << level << endl
 			<< "XP: " << exp << "/" << levelXp << endl;
 	}
+	virtual void Display(bool brief) const { //overloaded function that shows a brief version of the characters stats
+		if (brief) {
+			cout << "Name: " << name << " HP: " << health << "/" << maxHealth << endl;
+		}
+		else(Display());
+	}
+
+
+
+
 	void takePhysicalDamage(int damage) {
 		int damageReduction = damage - armour;
 		if (damageReduction <= 0) damageReduction = 1;
@@ -54,6 +64,8 @@ public:
 		if (health < 0) health = 0;
 		cout << name << " takes " << damageReduction << " magic damage.\n";
 	}
+
+	
 private:
 	//polymorphic functions. Each instance has their own return of this function.
 	virtual int physicalAttack()const {

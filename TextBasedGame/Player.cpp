@@ -6,7 +6,10 @@ void Player::Display() const{
     Character::Display();
     
 }
-
+void Player::Display(bool breif) const { //override for the display function.
+	cout << "\nPlayer Info:\n";
+    Character::Display(true);
+}
 Player* Player::PlayerCreation() {
     string name;
     Specialty specialty;

@@ -19,9 +19,10 @@ public:
 	Player(string name,Specialty specialty,int maxHealth, int health, int physDamage, int magDamage, int armour, int magResist) :Character(name,maxHealth, health, physDamage, magDamage, armour, magResist) {
 	}
 	void Display() const override;
-	static string getSpecialty(Specialty specialty);
+	void Display(bool breif) const override;
+	static string getSpecialty(Specialty specialty); // this converts the specialty enum to a string. static because it is not tied to an instance of the class
 
-	static Player* PlayerCreation();
+	static Player* PlayerCreation(); //Static  method that creates and returns a new Player object. it creates a new instance of the class
 
 	void levelUp() override;
 

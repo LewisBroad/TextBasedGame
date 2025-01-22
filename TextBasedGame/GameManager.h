@@ -18,6 +18,12 @@ class GameManager
 	string input;
 	Player* player;
 
+	// Define function pointers for the different attack types
+	typedef void (GameManager::*AttackFunction)(Player* player, Enemy* enemy);
+
+	//funtions for the players attacks.attacks
+	void physicalAttack(Player* player, Enemy* enemy);
+	void magicAttack(Player* player, Enemy* enemy);
 
 
 public:

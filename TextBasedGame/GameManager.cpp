@@ -1,6 +1,8 @@
 //Lewis Andrew Broad. Buckinghamshire New University
 
 #include "GameManager.h"
+
+
 GameManager::GameManager() {
 	srand(time(NULL)); //seed the random number generator
 }
@@ -127,36 +129,26 @@ void GameManager::randomEncounters() {
 	delete enemy; // free up memory
 }
 
+
+
 void GameManager::Battle(Player* player, Enemy* enemy) {
+
+	AttackFunction attacks[] = {&GameManager::physicalAttack,&GameManager::magicAttack }; //array of function pointers
+
 	while (player->isAlive() && enemy->isAlive()) { //will keep running while both enemy and player are alive
 		//players turn
 		int choice;
 		cout << "\nChoose your attack:\n 1. Physical Damage\n 2.Magic Damage\n";
 		cin >> choice;
-		if (choice == 1) {
-			enemy->takePhysicalDamage(player->physicalAttack()); //runs damage on enemy based on players attack damage
-			cout << "Enemy HP: " << enemy->getHealth() << endl;
-		}
-		else if (choice == 2) {
-			enemy->takeMagicDamage(player->magicAttack()); //runs damage on enemy based on players attack damage
-			cout << "Enemy HP: "<< enemy->getHealth() << endl;
+		if (choice >= 1 && choice <= 2) {
+			(this->*attacks[choice - 1])(player, enemy); //calls the attack function based on the choice. 1 being physical damage and 2 being magic damage
 		}
 		else {
 			cout << "Undecided, skipping turn...\n";
 		}
 		//Enemy's turn
 		if (enemy->isAlive()) {
-			int difference = 3;
-			/*if (rand() % 2 == 0) { //random number outcome always 0 or 1. randomly selects damage type.
-				player->takePhysicalDamage(enemy->physicalAttack());
-				cout << player->getName() << " HP: " << player->getHealth() << endl;
-			}
-			else {
-				player->takeMagicDamage(enemy->magicAttack());
-				cout << player->getName() << " HP: " << player->getHealth() << endl;
-
-			}*/
- 
+			int difference = 3; 
 			//smart enemy damage. Will attack based on what will do more damage.
 			if (abs(enemy->physicalAttack() - enemy->magicAttack()) > difference) { //abs is used to get the absolute difference between the numbers
 				if (enemy->physicalAttack() > enemy->magicAttack()) {
@@ -186,6 +178,7 @@ void GameManager::Battle(Player* player, Enemy* enemy) {
 		system("CLS");
 		cout << "You Defeated the " << enemy->getName() << endl;
 		player->gainXP(20 * enemy->getLevel());
+		player->Display(true);
 	}
 	else { cout << "you have died\n"; delete player; } //free up memory
 }
@@ -251,6 +244,20 @@ void GameManager::magicGnome() {
 	delete enemy;
 }
 
+void GameManager::physicalAttack(Player* player, Enemy* enemy) {
+	enemy->takePhysicalDamage(player->physicalAttack()); //calls the take physical damage function and bases the damage on the players physical attack
+	cout << "You deal " << player->physicalAttack() << " physical damage.\n";
+	cout << "Enemy health: " << enemy->getHealth() << endl;
+}
+void GameManager::magicAttack(Player* player, Enemy* enemy) {
+	enemy->takePhysicalDamage(player->magicAttack());
+	cout << "You deal " << player->magicAttack() << " magic damage.\n";
+	cout << "Enemy health: " << enemy->getHealth() << endl;
+
+}
+
+
+
 void GameManager::Shop() {
 
 }
@@ -260,47 +267,3 @@ void GameManager::Journey() {
 
 
 
-/*void GameManager::gameLoop(Player& player) {
-	while (player.isAlive()) {
-		auto enemy = EnemyManager::createEnemy(player.getLevel());
-		cout << "\nA level "<<enemy->getLevel()<< " " << enemy->getName() << " blocks your path\n";
-		enemy->Display();
-		while (enemy->isAlive() && player.isAlive()) {
-			//players turn
-			int choice; 
-			cout << "\nChoose your attack:\n 1. Physical Damage\n 2.Magic Damage\n";
-			cin >> choice;
-			if (choice == 1) {
-				enemy->takePhysicalDamage(player.physicalAttack());
-			}
-			else if (choice == 2) {
-				enemy->takeMagicDamage(player.magicAttack());
-			}
-			else {
-				cout << "Undecided, skipping turn...\n";
-			}
-			if (enemy->isAlive()) {
-				if (rand() % 2 == 0) {
-					player.takePhysicalDamage(enemy->physicalAttack());
-				}
-				else {
-					player.takeMagicDamage(enemy->magicAttack());
-				}
-			}
-		}
-		if (player.isAlive()) {
-			cout << "You Defeated the " << enemy->getName() << endl;
-			player.gainXP(20 * enemy->getLevel());
-		}
-		else { cout << "you have died\n"; }
-	}
-} */
-
-/*void GameManager::runGame() { //this is a code used for a simple battle scenario. Not used in actual game
-	cout << "Game Started\n";
-	Player* player = Player::PlayerCreation(); //runs player creation and assins to player pointer
-	player->Display();
-	Enemy* enemy = EnemyManager::createEnemy(player->getLevel()); //creats an enemy and assigns it to the enemy pointer.
-	//gameLoop(player);
-	Battle(player, enemy); //starts the battle script
-}*/
