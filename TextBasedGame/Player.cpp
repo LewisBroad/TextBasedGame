@@ -10,7 +10,7 @@ void Player::Display(bool breif) const { //override for the display function.
 	cout << "\nPlayer Info:\n";
     Character::Display(true);
 }
-Player* Player::PlayerCreation() {
+Player* Player::PlayerCreation() { //Static  method that creates and returns a new Player object. it creates a new instance of the class
     string name;
     Specialty specialty;
     //initialise variables
@@ -34,7 +34,7 @@ Player* Player::PlayerCreation() {
     cin >> choice;
     cin.ignore();
     
-    switch (choice) {
+	switch (choice) { //switch statement to set the values of the player based on the class chosen
     case 1:
         specialty = Specialty::Knight;
         maxHealth = 200;
@@ -83,7 +83,7 @@ Player* Player::PlayerCreation() {
         break;
     }
     cout << "Character created: " << name << " the " << getSpecialty(specialty);
-    return new Player(name, specialty, maxHealth, health, physDamage, magDamage, armour, magResist);
+	return new Player(name, specialty, maxHealth, health, physDamage, magDamage, armour, magResist); //returns a new player object
 }
 string Player::getSpecialty(Specialty specialty) {
     switch (specialty) {

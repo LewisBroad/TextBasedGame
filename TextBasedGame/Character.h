@@ -24,7 +24,7 @@ public:
 //	void newGame();
 	Character(string name, int maxHealth, int health, int physDamage, int magDamage, int armour, int magResist, int level = 1) :
 		name(name),maxHealth(maxHealth), health(health), physDamage(physDamage),magDamage(magDamage),
-		armour(armour),magResist(magResist), level(level), exp(0) 
+		armour(armour), magResist(magResist), level(level), exp(0) //initialises the values of the character
 	{
 		levelXp = 100 * level/2;
 	}

@@ -7,7 +7,7 @@ private:
 	string type;
 public:
 	Enemy(string name, string type, int maxHealth, int health, int physDamage, int magDamage, int armour, int magResist, int level = 1) :
-		Character(name, maxHealth, health, physDamage ,magDamage, armour, magResist, level), type(type) {
+		Character(name, maxHealth, health, physDamage, magDamage, armour, magResist, level), type(type) { //initialises the values of the enemy
 
 	}
 	void Display() const override;

@@ -16,10 +16,10 @@ void GameManager::startGame() {
 		int choice;
 		cin >> choice;
 
-		if (cin.fail()) throw invalid_argument("Invalid input");
+		if (cin.fail()) throw invalidActionExeption(); //if the input is not an integer, throw an exception
 
 		if (choice == 1) {
-			player = Player::PlayerCreation();
+			player = Player::PlayerCreation(); //creates a new player object
 			cout << "\nStarting new game...\n";
 		}
 		else if (choice == 2) {
@@ -31,7 +31,7 @@ void GameManager::startGame() {
 		}
 		gameLoop();
 	}
-	catch (exception e) {
+	catch (ExceptionHandler& e) {
 		cerr << "Error: " << e.what() << endl; //exception handler
 		exit(1);
 	}
@@ -76,12 +76,12 @@ void GameManager::gameLoop() {
 				playing = false;
 				break; //will stop the loop
 			default:
-				throw out_of_range("Invalid choice"); //handles invalid choice
+				throw invalidActionExeption(); //handles invalid choice
 				
 			}
 		}
-			catch (exception& e) {
-				cerr << "Error: " << e.what() << endl; //print error if caught
+			catch (ExceptionHandler& e) {
+				cerr << "Error: " << e.what() << endl; //print error if caught will only catch if the choice is invalid
 			}
 		}
 		if (!player->isAlive()) { //will end the game if the player is not alive
@@ -122,7 +122,7 @@ void GameManager::randomEncounters() {
 			Battle(player, enemy);
 		}
 	}
-	catch (exception& e) {
+	catch (ExceptionHandler& e) {
 		cerr << "Error: " << e.what() << endl;
 	}
 

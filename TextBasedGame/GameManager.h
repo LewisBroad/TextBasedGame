@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "EnemyManager.h"
+#include "ExceptionHandler.h"
 
 
 using namespace std;

@@ -1,5 +1,3 @@
-#ifndef NETCLIENT_H
-#define NETCLIENT_H
 #include <winsock2.h>
 #include <WS2tcpip.h>
 #include <tchar.h>
@@ -22,5 +20,3 @@ public:
     bool connectToServer();
     void cleanup();
 };
-
-#endif // NETCLIENT_H

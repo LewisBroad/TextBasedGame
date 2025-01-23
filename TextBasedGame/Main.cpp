@@ -16,7 +16,8 @@ using namespace std;
 int main() {
 	const int port = 55555;
 	NetClient client(port);
-	if (!client.startUp()) return 1;
+	//if there are any errors in the client startup, return 1
+	if (!client.startUp()) return 1; 
 	if (!client.createSocket()) return 1;
 	if (!client.connectToServer()) return 1;
 
