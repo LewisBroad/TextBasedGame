@@ -16,6 +16,6 @@ public:
 class invalidActionExeption :public ExceptionHandler
 {
 public:
-	invalidActionExeption() :ExceptionHandler("Invalid action") {} 
+	invalidActionExeption() :ExceptionHandler("Invalid action") {}
 };
 
