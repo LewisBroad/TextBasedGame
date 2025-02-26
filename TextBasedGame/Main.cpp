@@ -14,12 +14,12 @@ using namespace std;
 
 
 int main() {
-	const int port = 55555;
-	NetClient client(port);
+	//const int port = 55555;
+	//NetClient client(port);
 	//if there are any errors in the client startup, return 1
-	if (!client.startUp()) return 1; 
-	if (!client.createSocket()) return 1;
-	if (!client.connectToServer()) return 1;
+	//if (!client.startUp()) return 1; 
+	//if (!client.createSocket()) return 1;
+	//if (!client.connectToServer()) return 1;
 
 
 
@@ -28,6 +28,6 @@ int main() {
 
 
 
-	client.cleanup();
+	//client.cleanup();
 	return 0;
 }
